@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs' 
-import WriteComplaint from './screens/WriteComplaint'
-import ReadComplaint from './screens/ReadComplaint'
+import TransactionScreen from './screens/CycleTransactionScreen'
+import SearchScreen from './screens/SearchScreen'
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 export default class App extends React.Component {
@@ -17,27 +17,27 @@ export default class App extends React.Component {
 }
 
 const TabNavigator = createBottomTabNavigator({
-  WriteComplaint: WriteComplaint,
-  ReadComplaint: ReadComplaint
+  Transaction: TransactionScreen,
+  Search: SearchScreen
 },
 {
   defaultNavigationOptions: ({navigation})=>({
     tabBarIcon: ()=>{
       const routeName = navigation.state.routeName;
-      console.log(routeName)
-      if(routeName === "WriteComplaint"){
+  
+      if(routeName === "Transaction"){
         return(
           <Image
-          source={require("./assets/complaint.webp")}
+          source={require("./assets/transaction.jpg")}
           style={{width:40, height:40}}
         />
         )
         
       }
-      else if(routeName === "ReadComplaint"){
+      else if(routeName === "Search"){
         return(
           <Image
-          source={require("./assets/readC.png")}
+          source={{uri:"https://cdn.icon-icons.com/icons2/2566/PNG/512/search_icon_153438.png"}}
           style={{width:40, height:40}}
         />)
         
@@ -49,11 +49,3 @@ const TabNavigator = createBottomTabNavigator({
 
 const AppContainer = createAppContainer(TabNavigator);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
